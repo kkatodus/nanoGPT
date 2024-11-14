@@ -31,10 +31,12 @@ chunk_size = 10 * 1024 * 1024  # 10 MB
 print("Outputting the {} part of the dataset".format(args.part))
 if args.part == 'train':
     data = data[:int(len(data) * 0.9)]
-elif args.part == 'dev':
+elif args.part == 'val':
     data = data[int(len(data) * 0.9):int(len(data) * 0.95)]
 elif args.part == 'test':
     data = data[int(len(data) * 0.95):]
+else:
+    raise ValueError("Unknown part of the dataset, use 'train', 'val' or 'test'")
 
 n = len(data)
 print(f"Total {args.part} data size: {n:,} characters")
